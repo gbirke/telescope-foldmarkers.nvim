@@ -1,3 +1,9 @@
+local telescope_installed, telescope = pcall(require, 'telescope')
+
+if not telescope_installed then
+    error('This plugin requires nvim-telescope/telescope.nvim')
+end
+
 local telescope = require('telescope')
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
