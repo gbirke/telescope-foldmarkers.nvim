@@ -1,10 +1,11 @@
-.PHONY: lint format
+.PHONY: init lint format
 
 init:
 	luarocks install luacheck
 
 lint:
 	luacheck lua/
+	stylua --config-path ./.stylua.toml --check lua/ 
 
 format:
-	stylua lua/ --config-path ./.stylua.toml
+	stylua --config-path ./.stylua.toml lua/
