@@ -1,17 +1,19 @@
 {
   description = "Lua CI environment for telescope-foldmarkers.nvim";
 
-  inputs.flake-utils.url = "github:numtide/flake-utils";
+  outputs = { self, nixpkgs }:
 
-  outputs = { self, nixpkgs, flake-utils }:
-
-    flake-utils.lib.eachDefaultSystem (system:
-      let
+    let
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
         pkgs = import nixpkgs { inherit system; };
-      in
-      {
-        # You can run the CI tasks with `nix develop --command make lint`
-        devShell = pkgs.mkShell {
+      });
+    in
+    {
+
+      # You can run the CI tasks with `nix develop --command make lint`
+      devShells = forEachSupportedSystem ({ pkgs }: {
+        default = pkgs.mkShell {
           name = "lua-ci";
 
           buildInputs = with pkgs; [
@@ -21,7 +23,7 @@
             stylua
           ];
         };
-        formatter = pkgs.nixpkgs-fmt;
-      }
-    );
+      });
+      formatter = forEachSupportedSystem ({ pkgs, ... }: pkgs.nixpkgs-fmt);
+    };
 }
