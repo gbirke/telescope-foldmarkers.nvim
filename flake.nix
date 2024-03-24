@@ -21,6 +21,7 @@
             stylua
           ];
         };
+        formatter = pkgs.nixpkgs-fmt;
       }
     );
 }
