@@ -1,6 +1,3 @@
-[]: # Title: telescope-foldmarkers.nvim
-[]: # Description: Telescope extension for fold-markers
-
 # telescope-foldmarkers.nvim
 
 This [telescope.nvim][1] extension provides a search function for Vim
