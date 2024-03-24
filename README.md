@@ -1,9 +1,11 @@
 # telescope-foldmarkers.nvim
 
-This [telescope.nvim][1] extension provides a search function for Vim
-[fold-markers][2]. If you have long files with fold-markers, this
-extension can help you to jump around in the file, regardless if you're
-currently using `foldmethod=marker` or not.
+This [telescope.nvim][1] extension provides a way to search and jump to Vim
+[fold-markers][2]. This will help you to create your own navigable 
+"table of contents" for an otherwise unstructured long file, e.g. long CSS
+files, Vim configuration files, Nix configuration files, etc.
+You don't even have to use `foldmethod=marker` to benefit from this -
+Think of it as writing your own "table of contents" in the comments of your file.
 
 ## Prerequisites
 
